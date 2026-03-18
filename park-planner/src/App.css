@@ -1,3 +1,12 @@
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*TOP NAV*/
 .logo {
   height: 60px;
   width: auto;
@@ -18,8 +27,45 @@
 
 .nav-tabs { display:flex; height:100%; }
 .nav-tab {
-  display:flex; align-items:center; gap:7px; padding:0 20px;
-  font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600;
-  letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint);
-  border-bottom:2px solid transparent; cursor:pointer; transition:all .2s; user-select:none;
+  display: flex; /*so dot I want next to it will display beside it.*/
+  align-items: center;
+  gap: 7px;
+  padding: 0 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-bottom: 2px solid transparent; /*transparent right now, need to change this on hover*/
+  cursor: pointer;
+  transition: all .2s;
+  user-select: none; /*prevents highlighting.  I just read it makes it more like a button*/
+}
+
+.nav-tab.active {
+  color: var(--green-bright);
+  border-bottom-color: var(--green);
+}
+
+.nav-tab:hover:not(.active) {
+  color: var(--ink-mid);
+}
+
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+.nav-tab.active .nav-dot {
+  background: var(--green);
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }

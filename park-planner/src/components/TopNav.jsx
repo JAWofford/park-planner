@@ -1,26 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../assets/logo2.png';
 
 
 export default function TopNav() {
+const [activeTab, setActiveTab] = useState('discover');
+
   return (
     <div className='topnav'>
       <img className='logo' src={logo} alt="Logo" />
-      <div class="nav-tabs">
-        <div class="nav-tab active" id="nav-search">
-          <span class="nav-dot"></span> Discover Parks
-        </div>
-        <div class="nav-tab" id="nav-info" >
-          <span class="nav-dot"></span> Park Details
-        </div>
+
+      <div className="nav-tabs">
+        <Link 
+          to="/discover"
+          className={`nav-tab ${activeTab === 'discover' ? 'active' : ''}`}
+          onClick={() => setActiveTab('discover')}>
+          <span className="nav-dot"></span> Discover Parks
+        </Link>
+
+        <Link
+          to="/detail"
+          className={`nav-tab ${activeTab === 'detail' ? 'active' : ''}`}
+          onClick={() => setActiveTab('detail')}>
+          <span className="nav-dot"></span> Park Details
+        </Link>
       </div>
-      <div class="nav-right">
-        <div class="itinerary-toggle" id="itin-toggle" >
-          <span class="it-icon">🗺</span>
+
+      <div className="nav-right">
+        <div className="itinerary-toggle" id="itin-toggle">
+          <span className="it-icon">🗺</span>
           My Itinerary
-          <span class="it-arrow">▲</span>
+          <span className="it-arrow">▲</span>
         </div>
       </div>
-    </div>  
-      )
+    </div>
+  );
 }
