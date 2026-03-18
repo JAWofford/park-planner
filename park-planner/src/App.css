@@ -1,0 +1,25 @@
+.logo {
+  height: 60px;
+  width: auto;
+  margin-left: 32px;
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 56px;
+  border-bottom: 10px solid var(--border);
+  background: var(--bg);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 200;
+}
+
+.nav-tabs { display:flex; height:100%; }
+.nav-tab {
+  display:flex; align-items:center; gap:7px; padding:0 20px;
+  font-family:'Barlow Condensed',sans-serif; font-size:13px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--ink-faint);
+  border-bottom:2px solid transparent; cursor:pointer; transition:all .2s; user-select:none;
+}
