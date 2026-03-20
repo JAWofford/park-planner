@@ -1,4 +1,4 @@
-//import { useState } from 'react'
+import { useState } from 'react'
 import {Routes, Route} from 'react-router-dom'
 import './App.css'
 //import parksData from './data/parks.js';
@@ -12,15 +12,28 @@ function App() {
   
 // const [parks, setParks] = useState(parksData);
 // const [thingsToDo, setThingsToDo] = useState(thingsToDoData);
+const [itineraryOpen, setItineraryOpen] = useState(false);
 
   return (
-    <>
-      <TopNav />
-      <Routes>
-        <Route path="/discover" element={<Search />}/>
-        <Route path="/detail" element={<ParkDetail />} />
-      </Routes>
-    </>
+    <div className="app">
+      <header>
+        <TopNav
+          itineraryOpen={itineraryOpen}
+          onToggleItinerary={() => setItineraryOpen(!itineraryOpen)}
+        />
+      </header>
+
+      <main>
+        <Routes>
+          <Route path="/discover" element={<Search />} />
+          <Route path="/detail" element={<ParkDetail />} />
+        </Routes>
+      </main>
+
+      <footer>
+        <p>Data provided by the National Park Service</p>
+      </footer>
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo2.png';
 
 
-export default function TopNav() {
+export default function TopNav({itineraryOpen, onToggleItinerary}) {
 const [activeTab, setActiveTab] = useState('discover');
 
   return (
@@ -27,10 +27,11 @@ const [activeTab, setActiveTab] = useState('discover');
       </div>
 
       <div className="nav-right">
-        <div className="itinerary-toggle" id="itin-toggle">
+        <div className={`itinerary-toggle ${itineraryOpen ? 'open' : ''}`}
+        onClick={onToggleItinerary}>
           <span className="it-icon">🗺</span>
           My Itinerary
-          <span className="it-arrow">▲</span>
+          <span className={`it-arrow ${itineraryOpen ? 'down' : ''}`}>▲</span>
         </div>
       </div>
     </div>
