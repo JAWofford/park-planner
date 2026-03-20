@@ -1,0 +1,155 @@
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*TOP NAV*/
+.logo {
+  height: 60px;
+  width: auto;
+  margin-left: 20px;
+}
+
+.topnav {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 56px;
+  border-bottom: 2px solid var(--border);
+  background: var(--bg);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 200;
+}
+
+.nav-tabs { display:flex; height:100%; }
+.nav-tab {
+  display: flex; /*so dot I want next to it will display beside it.*/
+  align-items: center;
+  gap: 7px;
+  padding: 0 20px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border-bottom: 2px solid transparent; /*transparent right now, need to change this on hover*/
+  cursor: pointer;
+  transition: all .2s;
+  user-select: none; /*prevents highlighting.  I just read it makes it more like a button*/
+}
+
+.nav-tab.active {
+  color: var(--green-bright);
+  border-bottom-color: var(--green);
+}
+
+.nav-tab:hover:not(.active) {
+  color: var(--ink-mid);
+}
+
+.nav-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+.nav-tab.active .nav-dot {
+  background: var(--green);
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ITINERARY TOGGLE BUTTON */
+.itinerary-toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--surface2);
+  border: 1px solid var(--border-bright);
+  border-radius: 6px;
+  padding: 7px 14px 7px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  user-select: none;
+}
+
+.itinerary-toggle:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+.itinerary-toggle.open {
+  border-color: var(--green);
+  color: var(--green-bright);
+  background: var(--green-dim);
+}
+
+/* badge */
+.it-badge {
+  background: var(--green);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+}
+
+/* arrow rotation */
+.it-arrow {
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.it-arrow.down {
+  transform: rotate(180deg);
+}
+
+
+/*Main*/
+.app {
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* FOOTER */
+footer {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  flex-shrink: 0;
+}
+
+footer p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}

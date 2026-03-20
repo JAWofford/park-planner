@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #0e1a14;
+  --surface: #152010;
+  --surface2: #1c2b1a;
+  --surface3: #243322;
+  --border: #2e4a2a;
+  --border-bright: #3d6638;
+  --ink: #e8ead4;
+  --ink-mid: #9aaa88;
+  --ink-faint: #566650;
+  --gold: #c9a84c;
+  --gold-light: #f0d484;
+  --green: #4a9e5c;
+  --green-bright: #5db870;
+  --green-dim: #1e3d1a;
+  --red-bright: #e05a4a;
+  --red-dim: #3d1a1a;
+}
+
+body {
+  font-family: 'Barlow', sans-serif;  /* default font for the whole app */
+  color: var(--ink);                  /* default text color */
+}
