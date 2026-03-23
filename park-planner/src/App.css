@@ -134,6 +134,26 @@ main {
   flex: 1;
 }
 
+/*SEARCH BANNER*/
+.search-banner {
+  padding: 18px 28px 18px;
+  flex-shrink: 0;
+}
+
+.search-banner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.search-banner p {
+  font-size: 13px;
+  color: var(--ink-mid);
+  margin-bottom: 18px;
+}
+
 /* FOOTER */
 footer {
   height: 40px;
