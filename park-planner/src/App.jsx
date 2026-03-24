@@ -25,7 +25,7 @@ const [itineraryOpen, setItineraryOpen] = useState(false);
 
       <main>
         <Routes>
-          <Route path="/discover" element={<Search />} />
+          <Route path="/" element={<Search />} />
           <Route path="/detail" element={<ParkDetail />} />
         </Routes>
       </main>

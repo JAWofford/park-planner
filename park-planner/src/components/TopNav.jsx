@@ -12,7 +12,7 @@ const [activeTab, setActiveTab] = useState('discover');
 
       <div className="nav-tabs">
         <Link 
-          to="/discover"
+          to="/"
           className={`nav-tab ${activeTab === 'discover' ? 'active' : ''}`}
           onClick={() => setActiveTab('discover')}>
           <span className="nav-dot"></span> Discover Parks
