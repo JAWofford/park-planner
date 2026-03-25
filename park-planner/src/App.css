@@ -3,7 +3,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 /*TOP NAV*/
@@ -140,7 +140,7 @@ main {
   flex-shrink: 0;
 }
 
-.search-banner h2 {
+.search-banner-title {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
   font-weight: 700;
@@ -148,7 +148,7 @@ main {
   margin-bottom: 4px;
 }
 
-.search-banner p {
+.search-banner-intro {
   font-size: 13px;
   color: var(--ink-mid);
   margin-bottom: 18px;

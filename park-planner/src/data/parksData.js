@@ -23,9 +23,9 @@ const parks = [
       { id: "587BB2D3-EC35-41B2-B3F7-A39E2B088AEE", name: "Swimming" },
     ],
     image: {
-      url: "https://www.nps.gov/common/uploads/structured_data/C20E6CD3-CDF7-B3AB-8448CDCD7FD590FF.jpg",
-      altText: "Large mountains dotted with snow loom above a rocky meadow filled with yellow flowers.",
-      title: "Glacier Lilies near Logan Pass",
+      // url: "https://www.nps.gov/common/uploads/structured_data/C20E6CD3-CDF7-B3AB-8448CDCD7FD590FF.jpg",
+      // altText: "Large mountains dotted with snow loom above a rocky meadow filled with yellow flowers.",
+      // title: "Glacier Lilies near Logan Pass",
     },
     address: {
       line1: "64 Grinnell Drive",

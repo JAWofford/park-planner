@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import parksData from '../data/parksData';
+import ParkListing from './ParkListing';
+import { stateMap } from '../utils/stateMap';
+import './Search.css';
+
 
 export default function Search() {
   const [parks] = useState(parksData);
@@ -10,7 +14,11 @@ export default function Search() {
   const [filteredParks, setFilteredParks] = useState(null);
 
   // Derive dropdown options from parks data
-  const states = [...new Set(parks.flatMap(park => park.states.split(',')))].sort();
+  // const states = [...new Set(parks.flatMap(park => park.states.split(',')))].sort();
+  const states = [...new Set(parks.flatMap(park => park.states.split(',')))];
+  const sortedStates = states.sort((a, b) =>
+  stateMap[a].localeCompare(stateMap[b])
+);
 
   const parkNames = [...parks.map(park => park.fullName)].sort();
 
@@ -38,14 +46,14 @@ export default function Search() {
   return (
     <div>
       <div className="search-banner">
-        <h2>Find Your Next Adventure</h2>
-        <p>Search 400+ national parks, monuments, and recreation areas</p>
+        <h2 className="search-banner-title">Find Your Next Adventure</h2>
+        <p className="search-banner-intro">Search 400+ national parks, monuments, and recreation areas</p>
 
         <div className="search-controls">
           <select value={selectedState} onChange={e => setSelectedState(e.target.value)}>
             <option value="">State</option>
-            {states.map(state => (
-              <option key={state} value={state}>{state}</option>
+            {sortedStates.map(abbr => (
+              <option key={abbr} value={abbr}>{stateMap[abbr]}</option>
             ))}
           </select>
 
@@ -67,16 +75,18 @@ export default function Search() {
           <button onClick={handleClear}>Clear</button>
         </div>
 
-        {/* Results will go here — replace this with your ParkInfo component later */}
+        
         {filteredParks !== null &&
           (filteredParks.length === 0 ? (
             <p>No parks found. Try adjusting your filters</p>
           ) : (
             <div className="search-results">
               <p>{filteredParks.length} park(s) found</p>
+              <div className="park-grid">
               {filteredParks.map(park => (
-                <div key={park.id}>{park.fullName}</div>
+                <ParkListing key={park.id} park={park}/>
               ))}
+              </div>
             </div>
           ))}
       </div> 
