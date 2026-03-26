@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import {Routes, Route} from 'react-router-dom'
 import './App.css'
-//import parksData from './data/parks.js';
+import parksData from './data/parksData.js';
 //import thingsToDoData from './data/thingsToDo.js';
 import TopNav from './components/TopNav';
 import Search from './components/Search';
@@ -10,9 +10,10 @@ import ParkDetail from './components/ParkDetail';
 
 function App() {
   
-// const [parks, setParks] = useState(parksData);
+const [parks] = useState(parksData);
 // const [thingsToDo, setThingsToDo] = useState(thingsToDoData);
 const [itineraryOpen, setItineraryOpen] = useState(false);
+
 
   return (
     <div className="app">
@@ -25,8 +26,8 @@ const [itineraryOpen, setItineraryOpen] = useState(false);
 
       <main>
         <Routes>
-          <Route path="/" element={<Search />} />
-          <Route path="/detail" element={<ParkDetail />} />
+          <Route path="/" element={<Search parks={parks}/>} />
+          <Route path="/park/:parkCode" element={<ParkDetail parks={parks} />} />
         </Routes>
       </main>
 

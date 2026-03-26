@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import parksData from '../data/parksData';
 import ParkListing from './ParkListing';
 import { stateMap } from '../utils/stateMap';
 import './Search.css';
 
 
-export default function Search() {
-  const [parks] = useState(parksData);
+export default function Search({parks}) {
+  
 
   const [selectedState, setSelectedState] = useState('');
   const [selectedPark, setSelectedPark] = useState('');
@@ -71,25 +70,26 @@ export default function Search() {
             ))}
           </select>
 
-          <button onClick={handleSearch}>Search</button>
-          <button onClick={handleClear}>Clear</button>
+          <button className="search-btn" onClick={handleSearch}>Search</button>
+          <button className="clear-btn" onClick={handleClear}>Clear</button>
         </div>
-
-        
+      </div>      
+      
+      <div className="search-results">
         {filteredParks !== null &&
           (filteredParks.length === 0 ? (
             <p>No parks found. Try adjusting your filters</p>
           ) : (
-            <div className="search-results">
+            <div>
               <p>{filteredParks.length} park(s) found</p>
               <div className="park-grid">
               {filteredParks.map(park => (
-                <ParkListing key={park.id} park={park}/>
+                <ParkListing key={park.parkCode} park={park}/>
               ))}
               </div>
             </div>
           ))}
-      </div> 
+      </div>
     </div>
   );
 }

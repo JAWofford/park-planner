@@ -19,7 +19,7 @@ const [activeTab, setActiveTab] = useState('discover');
         </Link>
 
         <Link
-          to="/detail"
+          to="/park.:parkCode"
           className={`nav-tab ${activeTab === 'detail' ? 'active' : ''}`}
           onClick={() => setActiveTab('detail')}>
           <span className="nav-dot"></span> Park Details
