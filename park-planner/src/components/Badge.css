@@ -1,0 +1,14 @@
+/* shared */
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--green-dim);
+  font-size: 12px;
+}
+
+/* type variants */
+.badge-duration { background: var(--surface2); }
+.badge-fee { background: var(--red-dim); color: var(--red); }
+.badge-free { background: var(--green-dim); color: var(--green); }
+.badge-pets { background: var(--blue-dim); color: var(--blue); }
+.badge-reservation { background: var(--gold-dim); color: var(--gold); }
