@@ -4,7 +4,7 @@ import thingsToDo from '../data/thingsToDo';
 import Badge from './Badge';
 import './ParkDetail.css';
 
-export default function ParkDetail({ parks }) {
+export default function ParkDetail({ parks, addToItinerary, itinerary }) {
   const { parkCode } = useParams();
   const filteredActivities = thingsToDo.filter((act) => act.relatedParks.some(p => p.parkCode === parkCode));
   const park = parks.find(p => p.parkCode === parkCode);
@@ -21,6 +21,8 @@ export default function ParkDetail({ parks }) {
     });
     return acc;
   }, {});
+
+  const isAdded = (id) => itinerary.some(item => item.id === id);
 
   return (
 
@@ -53,7 +55,7 @@ export default function ParkDetail({ parks }) {
               <ul className="activity-list">
                 {items.map(item => (
                   <li key={item.id} className="todo-tile">
-                    {/* {item.title} */}
+                   
                     <div className="todo-body">
                       <div className="todo-title">{item.title}</div>
                       <div className="todo-desc">{item.shortDescription}</div>
@@ -74,10 +76,9 @@ export default function ParkDetail({ parks }) {
 
                       <div className="todo-actions">
                             <button
-                              className="todo-add-btn"
-                              // onClick={() => toggleItinerary(item)}
+                              className={`todo-add-btn" $isAdded(item.id) ? 'added' : ''}`}                              onClick={() => addToItinerary(item)}
                             >
-                              + Add
+                              {isAdded(item.id) ? '✓ Added' : '+ Add'}
                               </button>
                       </div>
 
