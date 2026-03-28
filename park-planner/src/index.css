@@ -17,6 +17,10 @@
   --green-dim: #1e3d1a;
   --red-bright: #e05a4a;
   --red-dim: #3d1a1a;
+  --topo-line:rgba(74,158,92,0.12); 
+  --topo-line2:rgba(74,158,92,0.06);
+  /* --topo-line: rgba(34, 139, 34, 0.08);   
+  --topo-line2: rgba(184, 134, 11, 0.05);  */
 }
 
 body {

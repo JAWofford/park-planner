@@ -3,7 +3,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 /*TOP NAV*/
@@ -16,7 +16,7 @@ body {
 .topnav {
   display: flex;
   align-items: center;
-  padding: 0 24px;
+  padding: 0px 24px;
   height: 56px;
   border-bottom: 2px solid var(--border);
   background: var(--bg);
@@ -128,6 +128,30 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+   background-image:
+    repeating-radial-gradient(
+      ellipse 900px 600px at 30% 40%,
+      transparent 0px,
+      transparent 38px,
+      var(--topo-line) 39px,
+      transparent 40px,
+      transparent 78px,
+      var(--topo-line2) 79px,
+      transparent 80px
+    ),
+    repeating-radial-gradient(
+      ellipse 600px 800px at 70% 60%,
+      transparent 0px,
+      transparent 55px,
+      var(--topo-line2) 56px,
+      transparent 57px,
+      transparent 111px,
+      var(--topo-line) 112px,
+      transparent 113px
+    );
+
+  background-blend-mode: normal;
 }
 
 main {
