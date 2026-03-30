@@ -1,6 +1,6 @@
 import React from 'react';
 import ItineraryItem from './ItineraryItem';
-//import './ItineraryDrawer.css';
+import './ItineraryDrawer.css';
 
 export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove }) {
 

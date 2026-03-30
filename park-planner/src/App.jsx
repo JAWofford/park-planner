@@ -33,13 +33,14 @@ const removeFromItinerary = (id) => {
         <TopNav
           itineraryOpen={isDrawerOpen}
           onToggleItinerary={() => setIsDrawerOpen(!isDrawerOpen)}
+          count={itinerary.length} 
         />
       </header>
 
       <main>
         <Routes>
           <Route path="/" element={<Search parks={parks} />} />
-          <Route path="/park/:parkCode" element={<ParkDetail parks={parks} addToItinerary={addToItinerary} itinerary={itinerary} />} />
+          <Route path="/park/:parkCode" element={<ParkDetail parks={parks} addToItinerary={addToItinerary} removeFromItinerary={removeFromItinerary} itinerary={itinerary} />} />
         </Routes>
       </main>
 

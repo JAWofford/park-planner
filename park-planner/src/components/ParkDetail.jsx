@@ -4,7 +4,7 @@ import thingsToDo from '../data/thingsToDo';
 import Badge from './Badge';
 import './ParkDetail.css';
 
-export default function ParkDetail({ parks, addToItinerary, itinerary }) {
+export default function ParkDetail({ parks, addToItinerary, removeFromItinerary, itinerary }) {
   const { parkCode } = useParams();
   const filteredActivities = thingsToDo.filter((act) => act.relatedParks.some(p => p.parkCode === parkCode));
   const park = parks.find(p => p.parkCode === parkCode);
@@ -55,7 +55,7 @@ export default function ParkDetail({ parks, addToItinerary, itinerary }) {
             {openCategory === category && (
               <ul className="activity-list">
                 {items.map(item => (
-                  <li key={item.id} className="todo-tile">
+                  <li key={item.id} className={`todo-tile ${isAdded(item.id) ? 'selected' : ''}`}>
                    
                     <div className="todo-body">
                       <div className="todo-title">{item.title}</div>
@@ -65,7 +65,7 @@ export default function ParkDetail({ parks, addToItinerary, itinerary }) {
                         <Badge type="duration" label={item.duration} icon="⏱" />
                         {item.doFeesApply === 'true'
                           ? <Badge type="fee" label="Fee Required" icon="$" />
-                          : <Badge type="free" label="Free" />
+                          : <Badge type="free" label="FREE" />
                         }
                         {item.arePetsPermitted === 'true' &&
                           <Badge type="pets" label="Pets OK" icon="🐾" />
@@ -76,12 +76,23 @@ export default function ParkDetail({ parks, addToItinerary, itinerary }) {
                       </div>
 
                       <div className="todo-actions">
+                            {/*Add Button */}
                             <button
-                              className={`todo-add-btn" $isAdded(item.id) ? 'added' : ''}`} 
+                              className={`todo-add-btn ${isAdded(item.id) ? 'added' : ''}`} 
                               onClick={() => addToItinerary(item)}
                             >
                               {isAdded(item.id) ? '✓ Added' : '+ Add'}
                               </button>
+
+                            {/* Remove Button */}
+                            {isAdded(item.id) && 
+                             <button
+                              className="todo-remove-btn" 
+                              onClick={() => removeFromItinerary(item.id)}
+                            >
+                              Remove
+                              </button>  
+                            }
                       </div>
 
                     </div>
