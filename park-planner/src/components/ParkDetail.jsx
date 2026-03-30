@@ -22,6 +22,7 @@ export default function ParkDetail({ parks, addToItinerary, itinerary }) {
     return acc;
   }, {});
 
+  //prevent duplicate entries in the itinerary
   const isAdded = (id) => itinerary.some(item => item.id === id);
 
   return (
@@ -76,7 +77,8 @@ export default function ParkDetail({ parks, addToItinerary, itinerary }) {
 
                       <div className="todo-actions">
                             <button
-                              className={`todo-add-btn" $isAdded(item.id) ? 'added' : ''}`}                              onClick={() => addToItinerary(item)}
+                              className={`todo-add-btn" $isAdded(item.id) ? 'added' : ''}`} 
+                              onClick={() => addToItinerary(item)}
                             >
                               {isAdded(item.id) ? '✓ Added' : '+ Add'}
                               </button>
