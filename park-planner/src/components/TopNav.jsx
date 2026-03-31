@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo2.png';
+import "./TopNav.css";
 
 
-export default function TopNav({itineraryOpen, onToggleItinerary}) {
+export default function TopNav({itineraryOpen, onToggleItinerary, count}) {
 const [activeTab, setActiveTab] = useState('discover');
 
   return (
@@ -31,6 +32,7 @@ const [activeTab, setActiveTab] = useState('discover');
         onClick={onToggleItinerary}>
           <span className="it-icon">🗺</span>
           My Itinerary
+          <span className="it-count">{count}</span>
           <span className={`it-arrow ${itineraryOpen ? 'down' : ''}`}>▲</span>
         </div>
       </div>
