@@ -11,8 +11,9 @@ import ItineraryDrawer from './components/ItineraryDrawer.jsx';
 function App() {
   
 const [parks] = useState(parksData);
-const [itinerary, setItinerary] =useState([]);
+const [itinerary, setItinerary] = useState([]);
 const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
 
 //passed to ParkDetail
 const addToItinerary = (item) => {
@@ -29,11 +30,11 @@ const removeFromItinerary = (id) => {
 
   return (
     <div className="app">
-      <header>
+      <header className="app-header">
         <TopNav
           itineraryOpen={isDrawerOpen}
           onToggleItinerary={() => setIsDrawerOpen(!isDrawerOpen)}
-          count={itinerary.length} 
+          count={itinerary.length}
         />
       </header>
 

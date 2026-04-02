@@ -1,5 +1,5 @@
 .search-banner {
-  padding: 18px 28px 18px;
+  padding: 0 28px 18px;
   flex-shrink: 0;
   border-bottom: 1px solid var(--border);
 }
@@ -75,7 +75,14 @@
 } 
 
 .search-results {
-    margin: 0px 0px 20px 20px;
+    margin: 0px 10px 20px 20px;
+}
+.featured-label{
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 10px ;
 }
 
 /*list of parks*/

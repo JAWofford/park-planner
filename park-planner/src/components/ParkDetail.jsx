@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import thingsToDo from '../data/thingsToDo';
 import Badge from './Badge';
 import './ParkDetail.css';
@@ -33,6 +33,7 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
         <p>Park not found.</p>
       ) : (
         <div>
+          <div className="back-link"><Link to="/" className="back-link">← Back to Results</Link></div>
           <div className="park-title">{park.fullName}</div>
            <div className="park-sub">{park.address.city}, {park.address.stateCode}</div>
           <div className="park-desc">{park.description}</div>

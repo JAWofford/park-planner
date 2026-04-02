@@ -1,9 +1,14 @@
+/*Global style to prevent padding from causing overflow*/
+*{
+  box-sizing: border-box
+}
+
 body {
   font-family: 'Barlow', sans-serif;
   background: var(--bg);
   color: var(--ink);
-  height: 100vh;
-  overflow-y: auto;
+  /* height: 100vh; */
+  /* overflow-y: auto; */
 }
 
 
@@ -41,6 +46,8 @@ body {
 
 main {
   flex: 1;
+  margin-top: 75px;
+  min-width: 0;
 }
 
 /* FOOTER */
