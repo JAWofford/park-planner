@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { useParams, Link } from 'react-router-dom';
 import thingsToDo from '../data/thingsToDo';
 import Badge from './Badge';
+import Button from './Button';
 import './ParkDetail.css';
 
 export default function ParkDetail({ parks, addToItinerary, removeFromItinerary, itinerary }) {
@@ -78,21 +79,20 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
 
                       <div className="todo-actions">
                             {/*Add Button */}
-                            <button
+                           
+                              <Button 
                               className={`todo-add-btn ${isAdded(item.id) ? 'added' : ''}`} 
                               onClick={() => addToItinerary(item)}
-                            >
-                              {isAdded(item.id) ? '✓ Added' : '+ Add'}
-                              </button>
+                              label={isAdded(item.id) ? '✓ Added' : '+ Add'}
+                              />
 
                             {/* Remove Button */}
                             {isAdded(item.id) && 
-                             <button
-                              className="todo-remove-btn" 
-                              onClick={() => removeFromItinerary(item.id)}
-                            >
-                              Remove
-                              </button>  
+                            <Button 
+                            className="todo-remove-btn" 
+                            onClick={() => removeFromItinerary(item.id)}
+                            label='Remove'
+                            /> 
                             }
                       </div>
 
