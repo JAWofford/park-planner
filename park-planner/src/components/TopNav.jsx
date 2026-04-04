@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo2.png';
+import discIcon from '../assets/compass-rose.png';
 import "./TopNav.css";
 
 
@@ -16,15 +17,17 @@ const [activeTab, setActiveTab] = useState('discover');
           to="/"
           className={`nav-tab ${activeTab === 'discover' ? 'active' : ''}`}
           onClick={() => setActiveTab('discover')}>
-          <span className="nav-dot"></span> Discover Parks
+          {/* <span className="nav-dot"></span> Discover Parks */}
+          <img className='disc-icon' src={discIcon} alt="compass"/> Discover Parks
         </Link>
 
-        <Link
-          to="/park.:parkCode"
+        {/* <Link
+          // to="/park.:parkCode"
+          to={parkCode ? `/park/${parkCode}` : '/park'}
           className={`nav-tab ${activeTab === 'detail' ? 'active' : ''}`}
           onClick={() => setActiveTab('detail')}>
           <span className="nav-dot"></span> Park Details
-        </Link>
+        </Link>*/}
       </div>
 
       <div className="nav-right">

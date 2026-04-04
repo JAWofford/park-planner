@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import thingsToDo from '../data/thingsToDo';
 import Badge from './Badge';
+import Button from './Button';
 import './ParkDetail.css';
 
 export default function ParkDetail({ parks, addToItinerary, removeFromItinerary, itinerary }) {
@@ -33,6 +34,7 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
         <p>Park not found.</p>
       ) : (
         <div>
+          <div className="back-link"><Link to="/" className="back-link">← Back to Results</Link></div>
           <div className="park-title">{park.fullName}</div>
            <div className="park-sub">{park.address.city}, {park.address.stateCode}</div>
           <div className="park-desc">{park.description}</div>
@@ -77,21 +79,20 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
 
                       <div className="todo-actions">
                             {/*Add Button */}
-                            <button
+                           
+                              <Button 
                               className={`todo-add-btn ${isAdded(item.id) ? 'added' : ''}`} 
                               onClick={() => addToItinerary(item)}
-                            >
-                              {isAdded(item.id) ? '✓ Added' : '+ Add'}
-                              </button>
+                              label={isAdded(item.id) ? '✓ Added' : '+ Add'}
+                              />
 
                             {/* Remove Button */}
                             {isAdded(item.id) && 
-                             <button
-                              className="todo-remove-btn" 
-                              onClick={() => removeFromItinerary(item.id)}
-                            >
-                              Remove
-                              </button>  
+                            <Button 
+                            className="todo-remove-btn" 
+                            onClick={() => removeFromItinerary(item.id)}
+                            label='Remove'
+                            /> 
                             }
                       </div>
 

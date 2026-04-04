@@ -1,6 +1,21 @@
 .park-detail {
     margin-left: 20px;
 }
+.back-link {
+  display: inline-block;
+  margin: 16px 0px;
+  font-family:'Barlow Condensed',sans-serif; 
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-mid);
+  text-decoration: none;
+  text-transform:uppercase; 
+}
+
+.back-link:hover {
+  color: var(--ink);
+}
+
 .park-title { 
     font-family:'Playfair Display', serif; 
     font-size:30px; 
@@ -121,24 +136,6 @@
     /* line-height:1.6;  */
     /* margin-bottom:8px;  */
     }
-
-.todo-add-btn, .todo-remove-btn {
-  background:var(--green-dim); 
-  border:1px solid var(--green); 
-  border-radius:4px;
-  padding:5px 12px; 
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:11px; 
-  font-weight:700; 
-  letter-spacing:.06em; 
-  text-transform:uppercase;
-  color:var(--green-bright); 
-  cursor:pointer; 
-  transition:all .15s;
-}
-.todo-add-btn:hover, .todo-remove-btn:hover { 
-    background:var(--green); 
-    color:white; }
 
 .todo-add-btn.added { 
     background:transparent; 

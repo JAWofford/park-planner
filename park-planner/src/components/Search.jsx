@@ -6,6 +6,9 @@ import './Search.css';
 
 export default function Search({parks}) {
   
+ //build default list of featured parks.
+ const featured = ['glac', 'yose', 'zion', 'arch'];
+const featuredParks = parks.filter(p => featured.includes(p.parkCode));
 
   const [selectedState, setSelectedState] = useState('');
   const [selectedPark, setSelectedPark] = useState('');
@@ -42,6 +45,7 @@ export default function Search({parks}) {
     setFilteredParks(null);
   };
 
+
   return (
     <div>
       <div className="search-banner">
@@ -76,19 +80,27 @@ export default function Search({parks}) {
       </div>      
       
       <div className="search-results">
-        {filteredParks !== null &&
-          (filteredParks.length === 0 ? (
-            <p>No parks found. Try adjusting your filters</p>
-          ) : (
-            <div>
-              <p>{filteredParks.length} park(s) found</p>
-              <div className="park-grid">
-              {filteredParks.map(park => (
-                <ParkListing key={park.parkCode} park={park}/>
+        {filteredParks === null ? (
+          <div className="featured-parks">
+            <p className="featured-label">Popular Parks</p>
+            <div className="park-grid">
+              {featuredParks.map(park => (
+                <ParkListing key={park.parkCode} park={park} />
               ))}
-              </div>
             </div>
-          ))}
+          </div>
+        ) : filteredParks.length === 0 ? (
+          <p>No parks found. Try adjusting your filters</p>
+        ) : (
+          <div>
+            <p>{filteredParks.length} park(s) found</p>
+            <div className="park-grid">
+              {filteredParks.map(park => (
+                <ParkListing key={park.parkCode} park={park} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
