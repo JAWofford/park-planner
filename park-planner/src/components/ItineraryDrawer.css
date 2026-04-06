@@ -119,3 +119,30 @@
 .itinerary-item-remove:hover{
   color:var(--gold); 
 }
+
+/* Tablet */
+@media (max-width: 768px) {
+  .itinerary-drawer {
+    width: 280px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .itinerary-drawer {
+    width: 100%;
+  }
+
+  .drawer-backdrop {
+    top: 66px;
+  }
+
+  .drawer-header h3 {
+    font-size: 14px;
+  }
+
+  .itinerary-item {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

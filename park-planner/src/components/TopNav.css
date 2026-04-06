@@ -120,3 +120,53 @@
 .it-arrow.down {
   transform: rotate(180deg);
 }
+
+/* ===== MEDIA QUERIES ===== */
+
+/* Tablet breakpoint */
+@media (max-width: 768px) {
+  .logo {
+    height: 45px;
+  }
+
+  .nav-tab {
+    font-size: 12px;
+    padding: 0 12px;
+  }
+
+  .itinerary-toggle {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+}
+
+
+/* Mobile breakpoint */
+@media (max-width: 480px) {
+  .topnav {
+    padding: 0 12px;
+  }
+
+  .logo {
+    height: 40px;
+    margin-left: 0;
+  }
+
+  .nav-tab {
+    font-size: 11px;
+    padding: 0 8px;
+  }
+
+  /* Hide "My Itinerary" text but keep icon + count */
+  .itinerary-toggle {
+    gap: 4px;
+    padding: 6px 8px;
+    font-size: 0;
+  }
+
+  .itinerary-toggle .it-icon,
+  .itinerary-toggle .it-count,
+  .itinerary-toggle .it-arrow {
+    font-size: 12px;
+  }
+}
