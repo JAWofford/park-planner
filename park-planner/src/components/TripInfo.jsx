@@ -1,5 +1,5 @@
 import React from 'react';
-import './Tripinfo.css';
+import './TripInfo.css';
 import Button from './Button';
 
 export default function TripInfo({ tripInfo, isEditing, errors, onEdit, onCancel, handleChange, handleSubmit }) {
