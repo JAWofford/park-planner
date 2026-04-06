@@ -1,0 +1,36 @@
+.about{
+    margin:10px;
+}
+
+.about-title {
+    font-family:'Barlow Condensed',sans-serif; 
+    font-size:24px; 
+    letter-spacing:.1em; 
+    text-transform:uppercase; 
+    color:var(--gold); 
+    margin-bottom:14px; 
+}
+
+.about-desc {
+    font-size: 16px; 
+    color:var(--ink-mid); 
+    line-height:1.5; 
+    max-width:600px;
+    border-left: 3px solid var(--border);
+    padding-left: 12px;
+    margin: 10px;
+}
+.features-title, .tech-title { 
+    font-family:'Playfair Display', serif; 
+    font-size:30px; 
+    font-weight:700; 
+    line-height:1.15; 
+    margin-bottom:4px; 
+}
+
+.features-grid, .tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}

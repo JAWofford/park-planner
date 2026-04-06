@@ -59,6 +59,7 @@ footer {
   border-top: 1px solid var(--border);
   background: var(--bg);
   flex-shrink: 0;
+  gap: 15px;
 }
 
 footer p {
@@ -68,4 +69,10 @@ footer p {
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink-faint);
+}
+
+@media (max-width: 480px) {
+  main {
+    margin-top: 60px;
+  }
 }

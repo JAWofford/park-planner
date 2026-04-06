@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, Link} from 'react-router-dom'
 import './App.css'
 import parksData from './data/parksData.js';
 import TopNav from './components/TopNav';
 import Search from './components/Search';
 import ParkDetail from './components/ParkDetail';
 import ItineraryDrawer from './components/ItineraryDrawer.jsx';
+import About from './components/About.jsx';
+import Button from './components/Button.jsx';
 
 
 function App() {
@@ -42,6 +44,7 @@ const removeFromItinerary = (id) => {
         <Routes>
           <Route path="/" element={<Search parks={parks} />} />
           <Route path="/park/:parkCode" element={<ParkDetail parks={parks} addToItinerary={addToItinerary} removeFromItinerary={removeFromItinerary} itinerary={itinerary} />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
 
@@ -53,6 +56,14 @@ const removeFromItinerary = (id) => {
       />
 
       <footer>
+        <div>
+          <Link to="/about" className="about-link">
+          <Button 
+            className="about-btn"
+            label="About"
+            />
+          </Link>
+        </div>
         <p>Data provided by the National Park Service</p>
       </footer>
     </div>
