@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {Routes, Route, Link} from 'react-router-dom'
 import './App.css'
 import parksData from './data/parksData.js';
@@ -13,8 +13,24 @@ import Button from './components/Button.jsx';
 function App() {
   
 const [parks] = useState(parksData);
-const [itinerary, setItinerary] = useState([]);
 const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+// const [itinerary, setItinerary] = useState([]);
+//get itinerary from local storage if it exists.
+const [itinerary, setItinerary] = useState(() => {
+  const saved = localStorage.getItem('itinerary');
+  return saved? JSON.parse(saved) : [];
+});
+
+//update localStorage when itinerary changes
+useEffect(() => { 
+  localStorage.setItem('itinerary', JSON.stringify(itinerary));
+}, [itinerary]);
+
+ //Clear itinerary from state and localStorage
+    const clearItinerary = () => {
+        setItinerary([]);
+        localStorage.removeItem('itinerary')
+    }
 
 
 //passed to ParkDetail
@@ -53,6 +69,7 @@ const removeFromItinerary = (id) => {
         onClose={() => setIsDrawerOpen(false)}
         itinerary={itinerary}
         onRemove={removeFromItinerary}
+        onClear={clearItinerary}
       />
 
       <footer>
