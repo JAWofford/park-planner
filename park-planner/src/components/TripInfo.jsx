@@ -2,7 +2,7 @@ import React from 'react';
 import './TripInfo.css';
 import Button from './Button';
 
-export default function TripInfo({ tripInfo, isEditing, errors, onEdit, onCancel, handleChange, handleSubmit }) {
+export default function TripInfo({ tripInfo, isEditing, errors, onEdit, onCancel, handleChange, handleSubmit, handleClear }) {
   
   const formatDate = (dateStr) => {
     if (!dateStr) return '';
@@ -19,22 +19,36 @@ export default function TripInfo({ tripInfo, isEditing, errors, onEdit, onCancel
       - display input fields if in edit mode */}
       {!isEditing ? (
         <div className="trip-display">
+          <div className="trip-info-title-bar">
           {tripInfo.title
             && <div className="trip-info-title">{tripInfo.title}</div>
           }
+
+          <Button 
+            className="trip-info-edit"
+            onClick={onEdit}
+            label={!tripInfo.title ? 'Add Trip Information' :
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
+              </svg>}
+              title="Edit trip info"
+          />
+          </div>
 
           {tripInfo.startDate && tripInfo.endDate && (
             <div className="trip-info-dates">{(formatDate(tripInfo.startDate)).split(",")[0]} — {formatDate(tripInfo.endDate)}</div>
           )}
 
           {tripInfo.notes && <div className="trip-info-notes">{tripInfo.notes}</div>}
-         
-          {/* Edit Button */}
-          <Button 
-          className="trip-info-edit"
-          onClick={onEdit}
-          label={!tripInfo.title ? 'Add Trip Information' : '✏ Edit'}
-          />
+                   
         </div>
       ) : (
         <form className="trip-form" onSubmit={handleSubmit}>
@@ -90,8 +104,12 @@ export default function TripInfo({ tripInfo, isEditing, errors, onEdit, onCancel
               onClick={onCancel}
               label="Cancel"
             />
-            {/* <button type="submit" className="trip-info-save">Save</button>
-            <button type="button" className="trip-info-cancel" onClick={onCancel}>Cancel</button> */}
+           <Button 
+              className="trip-info-clear"
+              onClick={handleClear}
+              label="Clear"
+            />
+
           </div>
         </form>
       )}

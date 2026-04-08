@@ -1,17 +1,47 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ItineraryItem from './ItineraryItem';
 import './ItineraryDrawer.css';
 import TripInfo from './TripInfo';
+import Button from './Button';
 
-export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove }) {
+export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, onClear }) {
 
-    const [tripInfo, setTripInfo] = useState({
+    // const [tripInfo, setTripInfo] = useState({
+    //     title: '',
+    //     startDate: '',
+    //     endDate: '',
+    //     notes: ''
+    // });
+
+    //get from local storage if it exists
+    const [tripInfo, setTripInfo] = useState(() => {
+        const saved = localStorage.getItem('tripInfo');
+        return saved ? JSON.parse(saved) : {
+            title: '',
+            startDate: '',
+            endDate: '',
+            notes: ''
+        };
+    });
+
+    //write to localStorage when tripInfo changes
+    useEffect(() => {
+        localStorage.setItem('tripInfo', JSON.stringify(tripInfo));
+    }, [tripInfo]);
+
+    //Clear tripInfo from state and localStorage
+   const clearTripInfo = () => {
+    setTripInfo({
         title: '',
         startDate: '',
         endDate: '',
         notes: ''
     });
+    localStorage.removeItem('tripInfo');
+};
+
+
     const [isEditing, setIsEditing] = useState(false);
     const [errors, setErrors] = useState({});
 
@@ -54,6 +84,18 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove }
         return acc;
     }, {});
 
+    //lock page scroll when drawer is open
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen])
+
     return (
         <>
             {/* Backdrop */}
@@ -63,7 +105,11 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove }
             <div className={`itinerary-drawer ${isOpen ? 'open' : ''}`}>
                 <div className="drawer-header">
                     <h3>My Itinerary</h3>
-                    <button className="drawer-close" onClick={onClose}>✕</button>
+                    <Button
+                        className="drawer-close-btn"
+                        onClick={onClose}
+                        label="✕"
+                    />
                 </div>
 
                 <div className="drawer-trip-info">
@@ -75,6 +121,7 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove }
                         onCancel={() => setIsEditing(false)}
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
+                        handleClear={clearTripInfo}
                     />
                 </div>
 
@@ -100,6 +147,14 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove }
                             </div>
                         ))
                     )}
+                </div>
+
+                <div className="drawer-footer">
+                    <Button
+                        className="intinerary-clear-btn"
+                        onClick={onClear}
+                        label="Clear Itinerary"
+                    />
                 </div>
             </div>
         </>
