@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
+
 import ParkListing from './ParkListing';
 import { stateMap } from '../utils/stateMap';
 import './Search.css';
 
 
-export default function Search({parks}) {
+export default function Search({parks, filteredParks, setFilteredParks, selectedState, setSelectedState, selectedPark, setSelectedPark, selectedActivity, setSelectedActivity}) {
   
  //build default list of featured parks.
  const featured = ['glac', 'yose', 'zion', 'arch'];
 const featuredParks = parks.filter(p => featured.includes(p.parkCode));
 
-  const [selectedState, setSelectedState] = useState('');
-  const [selectedPark, setSelectedPark] = useState('');
-  const [selectedActivity, setSelectedActivity] = useState('');
-  const [filteredParks, setFilteredParks] = useState(null);
-
-  // Derive dropdown options from parks data
-  // const states = [...new Set(parks.flatMap(park => park.states.split(',')))].sort();
+  // Get dropdown options from parks data
   const states = [...new Set(parks.flatMap(park => park.states.split(',')))];
   const sortedStates = states.sort((a, b) =>
   stateMap[a].localeCompare(stateMap[b])
@@ -77,6 +71,12 @@ const featuredParks = parks.filter(p => featured.includes(p.parkCode));
           <button className="search-btn" onClick={handleSearch}>Search</button>
           <button className="clear-btn" onClick={handleClear}>Clear</button>
         </div>
+        {/* <div className="filter-badges">
+            <Badge 
+            type="search-filter"
+            label={selectedState}
+            />
+        </div> */}
       </div>      
       
       <div className="search-results">

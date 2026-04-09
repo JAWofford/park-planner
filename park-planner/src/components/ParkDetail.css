@@ -47,8 +47,6 @@
 
 .category-section {
  list-style: none;
- /* border: 1px solid var(--border);
- border-radius: 10px; */
 }
 
 .category-header-button {
@@ -77,10 +75,11 @@
 
 .cat-count { 
     font-size:11px; 
-    color:var(--ink-faint); 
+    color:var(--ink-mid); 
     font-family:'Barlow Condensed',sans-serif; 
     margin-left:auto;
     margin-right: 0.5rem;
+    word-spacing: 3px;
 }
 
 .cat-chevron { 

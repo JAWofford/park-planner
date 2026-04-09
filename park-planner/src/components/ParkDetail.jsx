@@ -50,7 +50,7 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
                   onClick={() => toggleCategory(category)}
                 >
                   <span className="cat-name">{category}</span>
-                  <span className="cat-count">{items.length} things to do</span>
+                  <span className="cat-count">{items.length} thing(s) to do</span>
                   <span className="cat-chevron">{openCategory === category ? '▲' : '▼'}</span>
                   
                 </button>

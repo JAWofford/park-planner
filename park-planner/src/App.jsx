@@ -13,8 +13,14 @@ import Button from './components/Button.jsx';
 function App() {
   
 const [parks] = useState(parksData);
+const [filteredParks, setFilteredParks] = useState(null);
 const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-// const [itinerary, setItinerary] = useState([]);
+
+//lifted state passed to Search so selection boxes retain choices.
+const [selectedState, setSelectedState] = useState('');
+const [selectedPark, setSelectedPark] = useState('');
+const [selectedActivity, setSelectedActivity] = useState('');
+
 //get itinerary from local storage if it exists.
 const [itinerary, setItinerary] = useState(() => {
   const saved = localStorage.getItem('itinerary');
@@ -58,7 +64,19 @@ const removeFromItinerary = (id) => {
 
       <main>
         <Routes>
-          <Route path="/" element={<Search parks={parks} />} />
+          <Route path="/" element={
+            <Search 
+            parks={parks} 
+            filteredParks={filteredParks} 
+            setFilteredParks={setFilteredParks}
+            selectedState={selectedState}
+            setSelectedState={setSelectedState}
+            selectedPark={selectedPark}
+            setSelectedPark={setSelectedPark}
+            selectedActivity={selectedActivity}
+            setSelectedActivity={setSelectedActivity}
+             />
+             } />
           <Route path="/park/:parkCode" element={<ParkDetail parks={parks} addToItinerary={addToItinerary} removeFromItinerary={removeFromItinerary} itinerary={itinerary} />} />
           <Route path="/about" element={<About />} />
         </Routes>

@@ -12,6 +12,8 @@ export default function TripInfo({ tripInfo, isEditing, errors, onEdit, onCancel
       year: 'numeric'
     });
   };
+
+  const today = new Date().toLocaleDateString('en-CA');
   
   return (
     <div className="trip-info">
@@ -68,6 +70,8 @@ export default function TripInfo({ tripInfo, isEditing, errors, onEdit, onCancel
             <input
               type="date"
               value={tripInfo.startDate}
+              min={today}
+              max="3000-12-31"
               onChange={e => handleChange('startDate', e.target.value)}
             />
           </div>
