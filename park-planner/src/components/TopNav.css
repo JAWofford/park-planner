@@ -14,12 +14,10 @@
   border-bottom: 2px solid var(--border);
   background: var(--bg);
   flex-shrink: 0;
-  /* position:relative; */
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  /* width: 100%; */
   z-index: 200;
 }
 
@@ -35,33 +33,13 @@
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink);
-  border-bottom: 2px solid transparent; 
   transition: all .2s;
-  user-select: none; /*prevents highlighting.  I just read it makes it more like a button*/
-  border-radius: 15px;
+  user-select: none; /*prevents highlighting. */
 }
-
-/* .nav-tab.active {
-  color: var(--green-bright);
-  border-bottom-color: var(--green);
-
-  .nav-tab:hover:not(.active) {
-  color: var(--ink-mid);
-} */
 
 .nav-tab:hover {
-  color: var(--ink-mid);
-  box-shadow: 0 0 10px var(--green-bright);
+  color: var(--gold);
 }
-
-.disc-icon {
-  width: 30px;
-  height: 30px;
-}
-
-/* .nav-tab.active .nav-dot {
-  background: var(--green);
-} */
 
 .nav-right {
   margin-left: auto;
@@ -157,16 +135,14 @@
     padding: 0 8px;
   }
 
-  /* Hide "My Itinerary" text but keep icon + count */
+  /* Hide icon make text and count smaller */
   .itinerary-toggle {
     gap: 4px;
     padding: 6px 8px;
-    font-size: 0;
+    font-size: 10px;
   }
 
-  .itinerary-toggle .it-icon,
-  .itinerary-toggle .it-count,
-  .itinerary-toggle .it-arrow {
-    font-size: 12px;
+  .itinerary-toggle .it-icon{
+    font-size:0;
   }
 }

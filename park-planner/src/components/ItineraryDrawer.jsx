@@ -7,14 +7,7 @@ import Button from './Button';
 
 export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, onClear }) {
 
-    // const [tripInfo, setTripInfo] = useState({
-    //     title: '',
-    //     startDate: '',
-    //     endDate: '',
-    //     notes: ''
-    // });
-
-    //get from local storage if it exists
+      //get from local storage if it exists
     const [tripInfo, setTripInfo] = useState(() => {
         const saved = localStorage.getItem('tripInfo');
         return saved ? JSON.parse(saved) : {
@@ -24,6 +17,16 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
             notes: ''
         };
     });
+    const [savedTripInfo, setSavedTripInfo] = useState({
+        title: '',
+        startDate: '',
+        endDate: '',
+        notes: ''
+    });
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [errors, setErrors] = useState({});
+
 
     //write to localStorage when tripInfo changes
     useEffect(() => {
@@ -42,9 +45,7 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
 };
 
 
-    const [isEditing, setIsEditing] = useState(false);
-    const [errors, setErrors] = useState({});
-
+    
     // validates Tripinfo form fields
     const validate = () => {
         const newErrors = {};
@@ -68,6 +69,7 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
             setErrors(newErrors);
             return;
         }
+        setSavedTripInfo(tripInfo);
         setErrors({});
         setIsEditing(false);
     };
@@ -83,6 +85,13 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
         acc[parkName].push(item);
         return acc;
     }, {});
+
+    //TripInfo Cancel
+    const handleCancel = () => {
+        setTripInfo(savedTripInfo);
+        setErrors({});
+        setIsEditing(false);
+    }
 
     //lock page scroll when drawer is open
     useEffect(() => {
@@ -118,7 +127,7 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
                         isEditing={isEditing}
                         errors={errors}
                         onEdit={() => setIsEditing(true)}
-                        onCancel={() => setIsEditing(false)}
+                        onCancel={handleCancel}
                         handleChange={handleChange}
                         handleSubmit={handleSubmit}
                         handleClear={clearTripInfo}
