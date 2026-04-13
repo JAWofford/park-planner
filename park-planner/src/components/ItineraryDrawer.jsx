@@ -7,7 +7,10 @@ import Button from './Button';
 
 export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, onClear }) {
 
-      //get from local storage if it exists
+    const [isEditing, setIsEditing] = useState(false);
+    const [errors, setErrors] = useState({});
+
+    //get from local storage if it exists
     const [tripInfo, setTripInfo] = useState(() => {
         const saved = localStorage.getItem('tripInfo');
         return saved ? JSON.parse(saved) : {
@@ -17,6 +20,9 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
             notes: ''
         };
     });
+
+    // Stores the last successfully submitted trip info so
+    // handleCancel can restore it if the user cancels editing
     const [savedTripInfo, setSavedTripInfo] = useState({
         title: '',
         startDate: '',
@@ -24,28 +30,24 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
         notes: ''
     });
 
-    const [isEditing, setIsEditing] = useState(false);
-    const [errors, setErrors] = useState({});
-
-
     //write to localStorage when tripInfo changes
     useEffect(() => {
         localStorage.setItem('tripInfo', JSON.stringify(tripInfo));
     }, [tripInfo]);
 
     //Clear tripInfo from state and localStorage
-   const clearTripInfo = () => {
-    setTripInfo({
-        title: '',
-        startDate: '',
-        endDate: '',
-        notes: ''
-    });
-    localStorage.removeItem('tripInfo');
-};
+    const clearTripInfo = () => {
+        setTripInfo({
+            title: '',
+            startDate: '',
+            endDate: '',
+            notes: ''
+        });
+        localStorage.removeItem('tripInfo');
+    };
 
 
-    
+
     // validates Tripinfo form fields
     const validate = () => {
         const newErrors = {};
@@ -76,15 +78,8 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
 
     //TripInfo edits
     const handleChange = (field, value) => {
-  setTripInfo(prev => ({ ...prev, [field]: value }));
-};
-
-    const grouped = itinerary.reduce((acc, item) => {
-        const parkName = item.relatedParks?.[0]?.fullName || 'Unknown Park';
-        if (!acc[parkName]) acc[parkName] = [];
-        acc[parkName].push(item);
-        return acc;
-    }, {});
+        setTripInfo(prev => ({ ...prev, [field]: value }));
+    };
 
     //TripInfo Cancel
     const handleCancel = () => {
@@ -104,6 +99,14 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
             document.body.style.overflow = '';
         };
     }, [isOpen])
+
+    //group itinerary items by park.
+    const grouped = itinerary.reduce((acc, item) => {
+        const parkName = item.relatedParks?.[0]?.fullName || 'Unknown Park';
+        if (!acc[parkName]) acc[parkName] = [];
+        acc[parkName].push(item);
+        return acc;
+    }, {});
 
     return (
         <>
@@ -160,7 +163,7 @@ export default function ItineraryDrawer({ isOpen, onClose, itinerary, onRemove, 
 
                 <div className="drawer-footer">
                     <Button
-                        className="intinerary-clear-btn"
+                        className="itinerary-clear-btn"
                         onClick={onClear}
                         label="Clear Itinerary"
                     />

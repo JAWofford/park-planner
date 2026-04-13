@@ -7,6 +7,7 @@ export default function ItineraryItem({ item, onRemove }) {
             <div className="itinerary-item-body">
                 <div className="itinerary-item-title">{item.title}</div>
                 <div className="itinerary-badges">
+                    {/* NPS data returns boolean as a string compare as strings. */}
                     <Badge type="duration" label={item.duration} icon="⏱" />
                     {item.doFeesApply === 'true'
                         && <Badge type="fee" label="Fee" icon="$" />
