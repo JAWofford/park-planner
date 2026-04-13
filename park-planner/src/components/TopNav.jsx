@@ -4,7 +4,7 @@ import logo from '../assets/logo2.png';
 import "./TopNav.css";
 
 
-export default function TopNav({itineraryOpen, onToggleItinerary, count}) {
+export default function TopNav({itineraryOpen, onToggleItinerary, count, handleClear}) {
 
 
   return (
@@ -14,6 +14,7 @@ export default function TopNav({itineraryOpen, onToggleItinerary, count}) {
       <div className="nav-tabs">
         <Link 
           to="/"
+          onClick={handleClear}
           className="nav-tab home" >
           Home        </Link>
 

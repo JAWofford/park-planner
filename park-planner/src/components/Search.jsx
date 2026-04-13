@@ -4,7 +4,7 @@ import { stateMap } from '../utils/stateMap';
 import './Search.css';
 
 
-export default function Search({parks, filteredParks, setFilteredParks, selectedState, setSelectedState, selectedPark, setSelectedPark, selectedActivity, setSelectedActivity}) {
+export default function Search({parks, filteredParks, setFilteredParks, selectedState, setSelectedState, selectedPark, setSelectedPark, selectedActivity, setSelectedActivity, handleClear}) {
   
  //build default list of featured parks.
  const featured = ['glac', 'yose', 'zion', 'arch'];
@@ -32,12 +32,12 @@ const featuredParks = parks.filter(p => featured.includes(p.parkCode));
     setFilteredParks(results);
   };
 
-  const handleClear = () => {
-    setSelectedState('');
-    setSelectedPark('');
-    setSelectedActivity('');
-    setFilteredParks(null);
-  };
+  // const handleClear = () => {
+  //   setSelectedState('');
+  //   setSelectedPark('');
+  //   setSelectedActivity('');
+  //   setFilteredParks(null);
+  // };
 
 
   return (

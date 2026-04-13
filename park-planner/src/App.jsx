@@ -21,6 +21,14 @@ const [selectedState, setSelectedState] = useState('');
 const [selectedPark, setSelectedPark] = useState('');
 const [selectedActivity, setSelectedActivity] = useState('');
 
+//clearing search when clear button is pushed or Home link selected.
+const handleClear = () => {
+    setSelectedState('');
+    setSelectedPark('');
+    setSelectedActivity('');
+    setFilteredParks(null);
+  };
+
 //get itinerary from local storage if it exists.
 const [itinerary, setItinerary] = useState(() => {
   const saved = localStorage.getItem('itinerary');
@@ -59,6 +67,7 @@ const removeFromItinerary = (id) => {
           itineraryOpen={isDrawerOpen}
           onToggleItinerary={() => setIsDrawerOpen(!isDrawerOpen)}
           count={itinerary.length}
+          handleClear={handleClear}
         />
       </header>
 
@@ -75,6 +84,7 @@ const removeFromItinerary = (id) => {
             setSelectedPark={setSelectedPark}
             selectedActivity={selectedActivity}
             setSelectedActivity={setSelectedActivity}
+            handleClear={handleClear}
              />
              } />
           <Route path="/park/:parkCode" element={<ParkDetail parks={parks} addToItinerary={addToItinerary} removeFromItinerary={removeFromItinerary} itinerary={itinerary} />} />

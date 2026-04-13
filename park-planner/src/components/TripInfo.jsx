@@ -81,6 +81,8 @@ export default function TripInfo({ tripInfo, isEditing, errors, onEdit, onCancel
             <input
               type="date"
               value={tripInfo.endDate}
+              min={today}
+              max="3000-12-31"
               onChange={e => handleChange('endDate', e.target.value)}
             />
             {errors.endDate && <span className="form-error">{errors.endDate}</span>}
