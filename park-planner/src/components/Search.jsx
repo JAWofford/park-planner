@@ -48,7 +48,7 @@ const featuredParks = parks.filter(p => featured.includes(p.parkCode));
     <div>
       <div className="search-banner">
         <h2 className="search-banner-title">Find Your Next Adventure</h2>
-        <p className="search-banner-intro">Search 400+ national parks, monuments, and recreation areas</p>
+        <p className="search-banner-intro">Search 400+ national parks, monuments, and recreation areas to plan the perfect trip.</p>
 
         <div className="search-controls">
           <select value={selectedState} onChange={e => setSelectedState(e.target.value)}>

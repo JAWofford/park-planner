@@ -6,7 +6,7 @@ import './ParkListing.css';
 import { getOptimizedImage } from '../utils/imageHelper';
 
 export default function ParkListing({ park }) {
-    //TODO: with real API data NPS images will come as an array - update to select primary language
+    //TODO: with real API data NPS images will come as an array - update to select primary image
     const image = park.image;
 
     //preference order: optimized Cloud image, original NPS image, then local fallback
@@ -25,7 +25,7 @@ export default function ParkListing({ park }) {
                         width="400"
                         height="225"
                         onError={(e) => {
-                            //if optomized image fails, try original NPS image once; otherwise use fallback
+                            //if optimized image fails, try original NPS image once; otherwise use fallback
                             if (e.target.src !== npsURL && npsURL) {
                                 e.target.src = npsURL;
                             } else {
