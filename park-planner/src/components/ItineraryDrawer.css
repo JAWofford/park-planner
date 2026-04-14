@@ -1,9 +1,10 @@
+/*sliding right side drawer (hidden by default)*/
 .itinerary-drawer {
   position: fixed;
-  top: 66px; /*keeps it below topNav*/
+  top: 66px;
+  /*keeps it below topNav*/
   right: 0;
   bottom: 0;
-  /* height: 100vh; */
   width: 360px;
   background: var(--surface);
   border-left: 1px solid var(--border);
@@ -14,6 +15,7 @@
   flex-direction: column;
 
 }
+
 .drawer-trip-info {
   padding: 16px 20px;
   border-bottom: 1px solid var(--border);
@@ -25,7 +27,7 @@
   align-items: center;
   justify-content: center;
   padding: 6px;
-  border:none;
+  border: none;
 }
 
 .trip-info-edit svg {
@@ -34,19 +36,21 @@
   color: var(--ink-mid);
 }
 
-.trip-info-edit:hover{
-  background:var(--green); 
+.trip-info-edit:hover {
+  background: var(--green);
 }
 
+/*show drawer based on state*/
 .itinerary-drawer.open {
   transform: translateX(0);
 }
 
+/*dark backdrop overlay for open drawer*/
 .drawer-backdrop {
   position: fixed;
   top: 66px;
   left: 0;
-  right:0;
+  right: 0;
   bottom: 0;
   /* inset: 0; */
   background: rgba(0, 0, 0, 0.4);
@@ -76,6 +80,7 @@
   color: var(--ink-mid);
 }
 
+/*vertical layout of header, scrollable body, footer*/
 .drawer-body {
   flex: 1;
   overflow-y: auto;
@@ -83,6 +88,7 @@
   min-height: 0;
 }
 
+/*scrollbar styling of itinerary list*/
 .drawer-body::-webkit-scrollbar {
   width: 6px;
 }
@@ -96,8 +102,9 @@
   background: transparent;
 }
 
+/*fixed always displayed footer*/
 .drawer-footer {
-  flex-shrink: 0;            
+  flex-shrink: 0;
   padding: 10px 12px 10px;
   border-top: 1px solid var(--border);
   background: var(--surface);
@@ -105,12 +112,13 @@
   justify-content: center;
 }
 
-.intinerary-clear-btn{
+.itinerary-clear-btn {
   background: transparent;
   color: var(--ink-faint);
-  border:1px solid var(--ink-faint); 
+  border: 1px solid var(--ink-faint);
 }
 
+/*Text displayed when no itinerary items exist*/
 .drawer-empty {
   text-align: center;
   color: var(--ink-faint);
@@ -168,18 +176,20 @@
   padding: 0 0 0 8px;
 }
 
-.itinerary-item-remove:hover{
-  color:var(--gold); 
+.itinerary-item-remove:hover {
+  color: var(--gold);
 }
 
-/* Tablet */
+/*===Media Queries===*/
+
+/* Tablet: narrower drawer */
 @media (max-width: 768px) {
   .itinerary-drawer {
     width: 280px;
   }
 }
 
-/* Mobile */
+/* Mobile: full width drawer, stacked items */
 @media (max-width: 480px) {
   .itinerary-drawer {
     width: 100%;

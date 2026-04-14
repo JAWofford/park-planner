@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import {Routes, Route, Link} from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 import parksData from './data/parksData.js';
 import TopNav from './components/TopNav';
@@ -11,45 +11,53 @@ import Button from './components/Button.jsx';
 
 
 function App() {
-  
-const [parks] = useState(parksData);
-const [filteredParks, setFilteredParks] = useState(null);
-const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-//lifted state passed to Search so selection boxes retain choices.
-const [selectedState, setSelectedState] = useState('');
-const [selectedPark, setSelectedPark] = useState('');
-const [selectedActivity, setSelectedActivity] = useState('');
+  const [parks] = useState(parksData);
+  const [filteredParks, setFilteredParks] = useState(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-//get itinerary from local storage if it exists.
-const [itinerary, setItinerary] = useState(() => {
-  const saved = localStorage.getItem('itinerary');
-  return saved? JSON.parse(saved) : [];
-});
+  //lifted state so Search dropdown selections persist.
+  const [selectedState, setSelectedState] = useState('');
+  const [selectedPark, setSelectedPark] = useState('');
+  const [selectedActivity, setSelectedActivity] = useState('');
 
-//update localStorage when itinerary changes
-useEffect(() => { 
-  localStorage.setItem('itinerary', JSON.stringify(itinerary));
-}, [itinerary]);
+  // Reset all search filters and results (used by Clear button + Home navigation)
+  const handleClear = () => {
+    setSelectedState('');
+    setSelectedPark('');
+    setSelectedActivity('');
+    setFilteredParks(null);
+  };
 
- //Clear itinerary from state and localStorage
-    const clearItinerary = () => {
-        setItinerary([]);
-        localStorage.removeItem('itinerary')
-    }
-
-
-//passed to ParkDetail
-const addToItinerary = (item) => {
-  setItinerary(prev => {
-    if (prev.some(i => i.id === item.id)) return prev;
-    return [...prev, item];
+  //get itinerary from local storage if it exists.
+  const [itinerary, setItinerary] = useState(() => {
+    const saved = localStorage.getItem('itinerary');
+    return saved ? JSON.parse(saved) : [];
   });
-};
 
-const removeFromItinerary = (id) => {
-  setItinerary(prev=> prev.filter(item => item.id !== id));
-}
+  //update localStorage when itinerary changes
+  useEffect(() => {
+    localStorage.setItem('itinerary', JSON.stringify(itinerary));
+  }, [itinerary]);
+
+  //Clear itinerary from state and localStorage
+  const clearItinerary = () => {
+    setItinerary([]);
+    localStorage.removeItem('itinerary')
+  }
+
+
+  //add item if not alreday in itinerary (prevent duplicates)
+  const addToItinerary = (item) => {
+    setItinerary(prev => {
+      if (prev.some(i => i.id === item.id)) return prev;
+      return [...prev, item];
+    });
+  };
+
+  const removeFromItinerary = (id) => {
+    setItinerary(prev => prev.filter(item => item.id !== id));
+  }
 
 
   return (
@@ -59,29 +67,32 @@ const removeFromItinerary = (id) => {
           itineraryOpen={isDrawerOpen}
           onToggleItinerary={() => setIsDrawerOpen(!isDrawerOpen)}
           count={itinerary.length}
+          handleClear={handleClear}
         />
       </header>
 
       <main>
         <Routes>
           <Route path="/" element={
-            <Search 
-            parks={parks} 
-            filteredParks={filteredParks} 
-            setFilteredParks={setFilteredParks}
-            selectedState={selectedState}
-            setSelectedState={setSelectedState}
-            selectedPark={selectedPark}
-            setSelectedPark={setSelectedPark}
-            selectedActivity={selectedActivity}
-            setSelectedActivity={setSelectedActivity}
-             />
-             } />
+            <Search
+              parks={parks}
+              filteredParks={filteredParks}
+              setFilteredParks={setFilteredParks}
+              selectedState={selectedState}
+              setSelectedState={setSelectedState}
+              selectedPark={selectedPark}
+              setSelectedPark={setSelectedPark}
+              selectedActivity={selectedActivity}
+              setSelectedActivity={setSelectedActivity}
+              handleClear={handleClear}
+            />
+          } />
           <Route path="/park/:parkCode" element={<ParkDetail parks={parks} addToItinerary={addToItinerary} removeFromItinerary={removeFromItinerary} itinerary={itinerary} />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
 
+      {/* Global itinerary drawer available from all pages.       */}
       <ItineraryDrawer
         isOpen={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
@@ -93,9 +104,9 @@ const removeFromItinerary = (id) => {
       <footer>
         <div>
           <Link to="/about" className="about-link">
-          <Button 
-            className="about-btn"
-            label="About"
+            <Button
+              className="about-btn"
+              label="About"
             />
           </Link>
         </div>

@@ -1,12 +1,14 @@
-.trip-display { 
-    background:var(--surface2); 
-    border:1px solid var(--border); 
-    border-radius:8px; 
-    padding:12px 14px; 
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.trip-display {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
+
+/*title and edit button aligned horizontally*/
 .trip-info-title-bar {
   display: flex;
   justify-content: space-between;
@@ -14,31 +16,32 @@
 
 }
 
-.trip-info-title { 
-    font-family:'Playfair Display',serif; 
-    font-size:15px; 
-    color:var(--gold); 
-  }    
+.trip-info-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: var(--gold);
+}
 
-.trip-info-dates{
-    font-size:12px; 
-    color:var(--green); 
-    /* margin-bottom:8px; */
-}   
+.trip-info-dates {
+  font-size: 12px;
+  color: var(--green);
+}
 
+/*styled as a callout matching park description in parkDetail*/
 .trip-info-notes {
-  font-size:13px; 
-    color:var(--ink-mid); 
-    line-height:1.5; 
-    max-width:600px;
-    border-left: 3px solid var(--border);
-    padding-left: 12px;
+  font-size: 13px;
+  color: var(--ink-mid);
+  line-height: 1.5;
+  max-width: 600px;
+  border-left: 3px solid var(--border);
+  padding-left: 12px;
 }
 
 .trip-info-edit {
-    width: fit-content;
+  width: fit-content;
 }
 
+/*edit mode form layout*/
 .trip-form {
   display: flex;
   flex-direction: column;
@@ -95,4 +98,4 @@
   display: flex;
   gap: 8px;
   margin-top: 4px;
-}  
+}

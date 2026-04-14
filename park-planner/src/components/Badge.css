@@ -1,4 +1,4 @@
-/* shared */
+/* Base badge component styles*/
 .badge {
   padding: 4px 8px;
   border-radius: 4px;
@@ -6,22 +6,39 @@
   font-size: 12px;
   user-select: none;
   /* margin: 5px; */
-  font-family:'Barlow Condensed',sans-serif;
-  text-transform:uppercase;
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
   display: inline-flex;
   align-items: center;
   gap: 4px;
 }
 
 /* type variants */
-.badge-duration { background: var(--surface2); }
-.badge-fee { background: var(--red-dim); color: var(--red); }
-.badge-free { background: var(--green-dim); color: var(--green); }
-.badge-pets { background: var(--surface2);}
-.badge-reservation { color: var(--gold); }
+.badge-duration {
+  background: var(--surface2);
+}
 
-/*About Page*/
-.badge-feature, .badge-tech {
+.badge-fee {
+  background: var(--red-dim);
+  color: var(--red);
+}
+
+.badge-free {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+.badge-pets {
+  background: var(--surface2);
+}
+
+.badge-reservation {
+  color: var(--gold);
+}
+
+/* Large badge used only on About page feature blocks */
+.badge-feature,
+.badge-tech {
 
   font-size: 16px;
   font-weight: 700;
@@ -31,7 +48,7 @@
   width: 100%;
   max-width: 600px;
   justify-content: center;
-  text-align:center;
+  text-align: center;
   line-height: 1.4;
 
 }

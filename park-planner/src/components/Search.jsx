@@ -4,7 +4,17 @@ import { stateMap } from '../utils/stateMap';
 import './Search.css';
 
 
-export default function Search({parks, filteredParks, setFilteredParks, selectedState, setSelectedState, selectedPark, setSelectedPark, selectedActivity, setSelectedActivity}) {
+export default function Search({
+  parks, 
+  filteredParks, 
+  setFilteredParks, 
+  selectedState, 
+  setSelectedState, 
+  selectedPark, 
+  setSelectedPark, 
+  selectedActivity, 
+  setSelectedActivity, 
+  handleClear}) {
   
  //build default list of featured parks.
  const featured = ['glac', 'yose', 'zion', 'arch'];
@@ -22,6 +32,7 @@ const featuredParks = parks.filter(p => featured.includes(p.parkCode));
     ...new Set(parks.flatMap(park => park.activities.map(a => a.name)))
   ].sort();
 
+  //search based on user choices
   const handleSearch = () => {
     const results = parks.filter(park => {
       const matchesState    = !selectedState    || park.states.includes(selectedState);
@@ -32,19 +43,12 @@ const featuredParks = parks.filter(p => featured.includes(p.parkCode));
     setFilteredParks(results);
   };
 
-  const handleClear = () => {
-    setSelectedState('');
-    setSelectedPark('');
-    setSelectedActivity('');
-    setFilteredParks(null);
-  };
-
 
   return (
     <div>
       <div className="search-banner">
         <h2 className="search-banner-title">Find Your Next Adventure</h2>
-        <p className="search-banner-intro">Search 400+ national parks, monuments, and recreation areas</p>
+        <p className="search-banner-intro">Search 400+ national parks, monuments, and recreation areas to plan the perfect trip.</p>
 
         <div className="search-controls">
           <select value={selectedState} onChange={e => setSelectedState(e.target.value)}>
@@ -71,12 +75,7 @@ const featuredParks = parks.filter(p => featured.includes(p.parkCode));
           <button className="search-btn" onClick={handleSearch}>Search</button>
           <button className="clear-btn" onClick={handleClear}>Clear</button>
         </div>
-        {/* <div className="filter-badges">
-            <Badge 
-            type="search-filter"
-            label={selectedState}
-            />
-        </div> */}
+        
       </div>      
       
       <div className="search-results">

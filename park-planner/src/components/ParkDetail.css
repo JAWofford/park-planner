@@ -1,61 +1,64 @@
+/*Main park detail container*/
 .park-detail {
     margin-left: 20px;
 }
+
 .back-link {
-  display: inline-block;
-  margin: 16px 0px;
-  font-family:'Barlow Condensed',sans-serif; 
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--ink-mid);
-  text-decoration: none;
-  text-transform:uppercase; 
+    display: inline-block;
+    margin: 16px 0px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink-mid);
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .back-link:hover {
-  color: var(--ink);
+    color: var(--ink);
 }
 
-.park-title { 
-    font-family:'Playfair Display', serif; 
-    font-size:30px; 
-    font-weight:700; 
-    line-height:1.15; 
-    margin-bottom:4px; 
+.park-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 4px;
 }
 
-.park-desc { 
-    font-size:13px; 
-    color:var(--ink-mid); 
-    line-height:1.5; 
-    max-width:600px;
+/*styled as callout wiht left accent border*/
+.park-desc {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+    max-width: 600px;
     border-left: 3px solid var(--border);
     padding-left: 12px;
 }
 
-.park-sub { 
-    font-family:'Barlow Condensed',sans-serif; 
-    font-size:12px; 
-    letter-spacing:.1em; 
-    text-transform:uppercase; 
-    color:var(--green); 
-    margin-bottom:14px; 
+.park-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 14px;
 }
 
 /*ACTIVITY CATEGORIES*/
 
 
 .category-section {
- list-style: none;
+    list-style: none;
 }
 
+/*collapsible container*/
 .category-header-button {
     box-shadow: none;
     border: 1px solid var(--border);
     display: flex;
     width: 98%;
-    align-items: center; 
-    /* gap: 12px; */
+    align-items: center;
     padding: 13px 16px;
     cursor: pointer;
     background: var(--surface2);
@@ -65,30 +68,31 @@
     margin: 10px 0;
 }
 
-.cat-name { 
-    font-family:'Barlow Condensed',sans-serif; 
-    font-size:16px; 
-    font-weight:700; 
-    letter-spacing:.05em; 
+.cat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .05em;
     color: var(--ink);
 }
 
-.cat-count { 
-    font-size:11px; 
-    color:var(--ink-mid); 
-    font-family:'Barlow Condensed',sans-serif; 
-    margin-left:auto;
+.cat-count {
+    font-size: 11px;
+    color: var(--ink-mid);
+    font-family: 'Barlow Condensed', sans-serif;
+    margin-left: auto;
     margin-right: 0.5rem;
     word-spacing: 3px;
 }
 
-.cat-chevron { 
-    font-size:10px; 
-    color:var(--ink-faint); 
-    transition:transform .25s; 
+/*rotates based on state*/
+.cat-chevron {
+    font-size: 10px;
+    color: var(--ink-faint);
+    transition: transform .25s;
 }
 
-.todo-tile{
+.todo-tile {
     list-style: none;
     transition: background 0.2s;
     background-color: var(--surface3);
@@ -96,47 +100,48 @@
     width: 92%;
     border: 1px solid var(--border);
     padding: 15px;
-     margin: 10px 0px;
+    margin: 10px 0px;
 }
 
 .todo-tile:hover {
-  /* background: var(--surface2); */
-  border-color: var(--border-bright);
+    border-color: var(--border-bright);
 }
 
-.todo-tile.selected{
-     opacity: 0.7;
+/*visually dimmed for items already added to itinerary*/
+.todo-tile.selected {
+    opacity: 0.7;
 }
 
-.todo-body{
+.todo-body {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.todo-badges { 
-    display:flex; 
-    flex-wrap:wrap; 
-    gap:5px; 
-    margin-bottom:8px; }
-
-.todo-title { 
-    /* font-family:'Barlow Condensed',sans-serif;  */
-    font-size:14px; 
-    font-weight:700; 
-    letter-spacing:.02em; 
-    margin-bottom:4px; 
-    line-height:1.3;
+.todo-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 8px;
 }
 
-.todo-desc { 
-    font-size:14px; 
-    color:var(--ink-mid); 
-    /* line-height:1.6;  */
-    /* margin-bottom:8px;  */
-    }
+.todo-title {
+    /* font-family:'Barlow Condensed',sans-serif;  */
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
 
-.todo-add-btn.added { 
-    background:transparent; 
-    border-color:var(--ink-faint); 
-    color:var(--ink-faint); }
+.todo-desc {
+    font-size: 14px;
+    color: var(--ink-mid);
+}
+
+/*faded styling based on state for Added button*/
+.todo-add-btn.added {
+    background: transparent;
+    border-color: var(--ink-faint);
+    color: var(--ink-faint);
+}
