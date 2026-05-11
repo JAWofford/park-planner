@@ -5,7 +5,8 @@ import './Search.css';
 
 
 export default function Search({
-  parks, 
+  parks,
+  loading, 
   filteredParks, 
   setFilteredParks, 
   selectedState, 
@@ -48,32 +49,31 @@ const featuredParks = parks.filter(p => featured.includes(p.parkCode));
     <div>
       <div className="search-banner">
         <h2 className="search-banner-title">Find Your Next Adventure</h2>
-        <p className="search-banner-intro">Search 400+ national parks, monuments, and recreation areas to plan the perfect trip.</p>
-
+        <p className="search-banner-intro">{loading ? 'Loading parks data...' : 'Search 400+ national parks, monuments, and recreation areas to plan the perfect trip.'}</p>
         <div className="search-controls">
-          <select value={selectedState} onChange={e => setSelectedState(e.target.value)}>
+          <select disabled={loading} value={selectedState} onChange={e => setSelectedState(e.target.value)}>
             <option value="">State</option>
             {sortedStates.map(abbr => (
               <option key={abbr} value={abbr}>{stateMap[abbr]}</option>
             ))}
           </select>
 
-          <select value={selectedPark} onChange={e => setSelectedPark(e.target.value)}>
+          <select disabled={loading} value={selectedPark} onChange={e => setSelectedPark(e.target.value)}>
             <option value="">Parks</option>
             {parkNames.map(name => (
               <option key={name} value={name}>{name}</option>
             ))}
           </select>
 
-          <select value={selectedActivity} onChange={e => setSelectedActivity(e.target.value)}>
+          <select disabled={loading} value={selectedActivity} onChange={e => setSelectedActivity(e.target.value)}>
             <option value="">Activity</option>
             {activities.map(activity => (
               <option key={activity} value={activity}>{activity}</option>
             ))}
           </select>
 
-          <button className="search-btn" onClick={handleSearch}>Search</button>
-          <button className="clear-btn" onClick={handleClear}>Clear</button>
+          <button disabled={loading} className="search-btn" onClick={handleSearch}>Search</button>
+          <button disabled={loading} className="clear-btn" onClick={handleClear}>Clear</button>
         </div>
         
       </div>      
