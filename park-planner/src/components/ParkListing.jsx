@@ -7,7 +7,7 @@ import { getOptimizedImage } from '../utils/imageHelper';
 
 export default function ParkListing({ park }) {
     //TODO: with real API data NPS images will come as an array - update to select primary image
-    const image = park.image;
+    const image = park.images[0];
 
     //preference order: optimized Cloud image, original NPS image, then local fallback
     const cloudURL = getOptimizedImage(image?.url);

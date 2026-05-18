@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import './App.css'
-import parksData from './data/parksData.js';
+//import parksData from './data/parksData.js';
+import useParks from './hooks/useParks.js';
 import TopNav from './components/TopNav';
 import Search from './components/Search';
 import ParkDetail from './components/ParkDetail';
@@ -12,7 +13,8 @@ import Button from './components/Button.jsx';
 
 function App() {
 
-  const [parks] = useState(parksData);
+  //const [parks] = useState(parksData);
+  const {parks, loading, error} = useParks(); //API Fetch
   const [filteredParks, setFilteredParks] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -29,6 +31,7 @@ function App() {
     setFilteredParks(null);
   };
 
+  //Could move all this itinerary logic to a hooks/useItinerary.js file.
   //get itinerary from local storage if it exists.
   const [itinerary, setItinerary] = useState(() => {
     const saved = localStorage.getItem('itinerary');
@@ -59,6 +62,18 @@ function App() {
     setItinerary(prev => prev.filter(item => item.id !== id));
   }
 
+  // if (loading) return (
+  //   <div className="app-status">
+  //     <p>Loading parks data…</p>
+  //   </div>
+  // );
+
+  if (error) return (
+    <div className="app-status app-status--error">
+      <p>Failed to load parks: {error}</p>
+      <button onClick={() => window.location.reload()}>Retry</button>
+    </div>
+  );
 
   return (
     <div className="app">
@@ -76,6 +91,7 @@ function App() {
           <Route path="/" element={
             <Search
               parks={parks}
+              loading={loading}
               filteredParks={filteredParks}
               setFilteredParks={setFilteredParks}
               selectedState={selectedState}

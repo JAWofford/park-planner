@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import thingsToDo from '../data/thingsToDo';
+//import thingsToDo from '../data/thingsToDo';
+import useThingsToDo from '../hooks/useThingsToDo';
 import Badge from './Badge';
 import Button from './Button';
 import './ParkDetail.css';
@@ -9,7 +10,9 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
 
   const { parkCode } = useParams();
   //get activities for this park based on parkCode
-  const filteredActivities = thingsToDo.filter((act) => act.relatedParks.some(p => p.parkCode === parkCode));
+  //const filteredActivities = thingsToDo.filter((act) => act.relatedParks.some(p => p.parkCode === parkCode));
+  //assigning alias to thingsToDo of filteredActivities so will work with old code.
+  const { thingsToDo, loading, error } = useThingsToDo(parkCode);
 
   const park = parks.find(p => p.parkCode === parkCode);
 
@@ -20,7 +23,7 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
   };
 
   //group activities by category name
-  const grouped = filteredActivities.reduce((acc, activity) => {
+  const grouped = thingsToDo.reduce((acc, activity) => {
     activity.activities.forEach(act => {
       if (!acc[act.name]) acc[act.name] = [];
       acc[act.name].push(activity);
@@ -30,6 +33,9 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
 
   //check if activity already in itinerary (prevent duplicates)
   const isAdded = (id) => itinerary.some(item => item.id === id);
+
+  if (loading) return <p>Loading activities...</p>;
+  if (error) return <p>Failed to load activities: {error}</p>;
 
   return (
 
@@ -41,7 +47,7 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
           <div>
             <div className="back-link"><Link to="/" className="back-link">← Back to Results</Link></div>
             <div className="park-title">{park.fullName}</div>
-            <div className="park-sub">{park.address.city}, {park.address.stateCode}</div>
+            <div className="park-sub">{park.addresses[0].city}, {park.addresses[0].stateCode}</div>
             <div className="park-desc">{park.description}</div>
           </div>
         )}
@@ -72,7 +78,9 @@ export default function ParkDetail({ parks, addToItinerary, removeFromItinerary,
                       <div className="todo-desc">{item.shortDescription}</div>
 
                       <div className="todo-badges">
-                        <Badge type="duration" label={item.duration} icon="⏱" />
+                        {item.duration && item.duration !== 0
+                          ? <Badge type="duration" label={item.duration} icon="⏱" />
+                          : null}
                         {item.doFeesApply === 'true'
                           ? <Badge type="fee" label="Fee Required" icon="$" />
                           : <Badge type="free" label="FREE" />
